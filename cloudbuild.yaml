@@ -1,13 +1,17 @@
 steps:
 - name: python:3.11
-  entrypoint: python
+  entrypoint: bash
   args:
-    - agent.py
-    - --project_id=sss-gov
-    - --region=us-central1
-    - --cluster_name=cluster-8071
-    - --main_py=gs://agentic-elt-dataproc/jobs/wordcount_health.py
-    - --dry_run
+    - -c
+    - |
+      pip install --upgrade pip
+      pip install -r requirements.txt
+      python agent.py \
+        --project_id=sss-gov \
+        --region=us-central1 \
+        --cluster_name=cluster-8071 \
+        --main_py=gs://agentic-elt-dataproc/jobs/wordcount_health.py \
+        --dry_run
 
 options:
   logging: CLOUD_LOGGING_ONLY
