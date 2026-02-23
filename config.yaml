@@ -1,0 +1,51 @@
+
+project_id: "sss-gov"
+
+region: "us-central1"
+
+service_account: "agentic-pipeline@sss-gov.iam.gserviceaccount.com"
+ 
+llm:
+
+  enabled: true
+
+  model: "gemini-1.5-pro"
+
+  temperature: 0.2
+
+  max_output_tokens: 1024
+ 
+guardrails:
+
+  max_executor_instances: 100
+
+  max_executor_memory_gb: 32
+
+  max_executor_cores: 8
+
+  max_total_cost_usd: 50
+
+  allow_conf_keys:
+
+    - spark.sql.adaptive.enabled
+
+    - spark.sql.shuffle.partitions
+
+    - spark.executor.instances
+
+    - spark.executor.memory
+
+    - spark.executor.cores
+ 
+cost:
+
+  on_demand_usd_per_node_hour: 0.55
+
+  spot_discount: 0.6
+ 
+policies:
+
+  min_efficiency_score: 0.7
+
+  cost_weight: 0.5
+
