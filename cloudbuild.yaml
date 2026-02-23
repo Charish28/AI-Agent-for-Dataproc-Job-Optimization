@@ -3,6 +3,11 @@ steps:
   entrypoint: python
   args:
     - agent.py
+    - --project_id=sss-gov
+    - --region=us-central1
+    - --cluster_name=cluster-8071
+    - --main_py=gs://agentic-elt-dataproc/jobs/wordcount_health.py
+    - --dry_run
 
 options:
   logging: CLOUD_LOGGING_ONLY
