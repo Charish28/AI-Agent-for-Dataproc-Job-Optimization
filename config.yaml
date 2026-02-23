@@ -48,4 +48,8 @@ policies:
   min_efficiency_score: 0.7
 
   cost_weight: 0.5
+  
+  options:
+  
+  logging: CLOUD_LOGGING_ONLY
 
