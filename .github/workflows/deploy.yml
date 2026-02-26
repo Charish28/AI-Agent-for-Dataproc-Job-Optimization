@@ -32,3 +32,10 @@ jobs:
         with:
           path: wordcount_health.py
           destination: agentic-elt-dataproc/jobs/
+      - name: Upload Spark Job to GCS
+        uses: google-github-actions/upload-cloud-storage@v2
+        with:
+          path: wordcount_health.py
+          destination: agentic-elt-dataproc/jobs/
+          # Add this line below to fix the error
+          gzip: false
