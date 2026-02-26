@@ -1,55 +1,45 @@
-
 name: CI/CD Spark Agent Deploy
- 
+
+
+
 on:
-
   push:
+    branches: [ main ]
 
-    branches: [ main ]
- 
+
+
 jobs:
-
   deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    runs-on: ubuntu-latest
 
-    steps:
 
-      - name: Checkout code
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
 
-        uses: actions/checkout@v4
- 
-      - name: Set up Python
 
-        uses: actions/setup-python@v4
 
-        with:
+      - name: Lint with Flake8
+        run: |
+          pip install flake8
+          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
 
-          python-version: '3.12'
- 
-      - name: Lint with Flake8
 
-        run: |
 
-          pip install flake8
+      - name: Auth to GCP
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_KEY }}
 
-          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
- 
-      - name: Auth to GCP
 
-        uses: google-github-actions/auth@v2
 
-        with:
-
-          credentials_json: ${{ secrets.GCP_SA_KEY }}
- 
-      - name: Upload Spark Job to GCS
-
-        uses: google-github-actions/upload-cloud-storage@v2
-
-        with:
-
-          path: wordcount_health.py
-
-          destination: agentic-elt-dataproc/jobs/
-
+      - name: Upload Spark Job to GCS
+        uses: google-github-actions/upload-cloud-storage@v2
+        with:
+          path: wordcount_health.py
+          destination: agentic-elt-dataproc/jobs/
