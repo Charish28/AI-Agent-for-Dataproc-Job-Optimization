@@ -1,0 +1,25 @@
+steps:
+  # Step 1: Install dependencies
+  - name: python:3.10
+    entrypoint: pip
+    args: ["install", "-r", "requirements.txt"]
+ 
+  # Step 2: Run syntax check
+  - name: python:3.10
+    entrypoint: python
+    args: ["-m", "py_compile", "agent.py"]
+ 
+  # Step 3: Dry run agent
+  - name: python:3.10
+    entrypoint: python
+    args:
+      [
+        "agent.py",
+        "--config", "config.yaml",
+        "--project_id", "sss-gov",
+        "--region", "us-central1",
+        "--cluster_name", "cluster-8071",
+        "--main_py", "gs://agentic-elt-dataproc/jobs/wordcount_health.py",
+        "--dry_run"
+      ]
+ 

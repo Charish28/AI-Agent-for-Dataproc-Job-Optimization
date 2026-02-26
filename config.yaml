@@ -9,7 +9,7 @@ llm:
 
   enabled: true
 
-  model: "gemini-1.5-pro"
+  model: "gemini-1.5-pro-002"
 
   temperature: 0.2
 
