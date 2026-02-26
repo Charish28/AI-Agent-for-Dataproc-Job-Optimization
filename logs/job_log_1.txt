@@ -1,0 +1,35 @@
+done: true
+driverControlFilesUri: gs://agentic-elt-dataproc/google-cloud-dataproc-metainfo/729534d7-ccde-45df-8910-93ff2723a0ab/jobs/b734a876-c21e-4537-bb1c-7c5de5dbaeda/
+driverOutputResourceUri: gs://agentic-elt-dataproc/google-cloud-dataproc-metainfo/729534d7-ccde-45df-8910-93ff2723a0ab/jobs/b734a876-c21e-4537-bb1c-7c5de5dbaeda/driveroutput
+jobUuid: b734a876-c21e-4537-bb1c-7c5de5dbaeda
+placement:
+  clusterName: cluster-8071
+  clusterUuid: 729534d7-ccde-45df-8910-93ff2723a0ab
+pysparkJob:
+  args:
+  - gs://agentic-elt-dataproc/input/Healthcare_DataSet.csv
+  - gs://agentic-elt-dataproc/output/
+  mainPythonFileUri: gs://agentic-elt-dataproc/jobs/wordcount_health.py
+  properties:
+    spark.sql.shuffle.partitions: '80'
+reference:
+  jobId: b734a876-c21e-4537-bb1c-7c5de5dbaeda
+  projectId: sss-gov
+status:
+  state: DONE
+  stateStartTime: '2026-02-26T06:21:31.920535Z'
+statusHistory:
+- state: PENDING
+  stateStartTime: '2026-02-26T06:21:01.405182Z'
+- state: SETUP_DONE
+  stateStartTime: '2026-02-26T06:21:01.514926Z'
+- details: Agent reported job success
+  state: RUNNING
+  stateStartTime: '2026-02-26T06:21:01.896416Z'
+yarnApplications:
+- memoryMbSeconds: '127517'
+  name: HealthcareAnalysis
+  progress: 1.0
+  state: FINISHED
+  trackingUrl: http://cluster-8071-m.us-central1-b.c.sss-gov.internal.:8088/proxy/application_1771926068237_0006/
+  vcoreSeconds: '38'
